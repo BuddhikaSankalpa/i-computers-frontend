@@ -2,6 +2,8 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { FaShopify } from "react-icons/fa";
 import { AiFillProduct } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
+import AdminProductPage from './admin/adminProductPage';
+import AdminAddProductForm from './admin/adminAddProductForm';
 
 export default function AdminPage() {
   return (
@@ -51,12 +53,12 @@ export default function AdminPage() {
       <div className="flex-1 h-full overflow-y-auto backdrop-blur-[20px] bg-black/50 p-8">
         <Routes>
           <Route path='/' element={<h1 className="text-3xl font-bold text-white/90">Order Page</h1>} />
-          <Route path='/products' element={<h1 className="text-3xl font-bold text-white/90">Admin Product Page</h1>} />
+          <Route path='/products' element={<AdminProductPage/>} />
           <Route path='/users' element={<h1 className="text-3xl font-bold text-white/90">Users Page</h1>} />
-          <Route path='/' element={<h1 className="text-3xl font-bold text-white/90">Order Page</h1>} />
-          <Route path='/products' element={<h1 className="text-3xl font-bold text-white/90">Admin Product Page</h1>} />
-          <Route path='/users' element={<h1 className="text-3xl font-bold text-white/90">Users Page</h1>} />
-          <Route path='/add-product' element={<h1 className="text-3xl font-bold text-white/90">Add Product</h1>} />
+          <Route path='/' element={<h1>Order Page</h1>} />
+          <Route path='/products' element={<AdminProductPage/>} />
+          <Route path='/users' element={<h1>Users Page</h1>} />
+          <Route path='/add-product' element={<AdminAddProductForm/>} />
         </Routes>
       </div>
 

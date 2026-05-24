@@ -1,141 +1,129 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import api from "../../utils/api";
+import LoadingScreen from "../../components/loadingScreen";
+import ProductDeleteButton from "../../components/productDeleteButton";
+import { CiEdit } from "react-icons/ci";
+import getFormattedPrice from "../../utils/price-formatter";
 
-const sampleProducts = [
-	{
-		productId: "PRD001",
-		name: "NVIDIA GeForce RTX 4060 8GB",
-		altNames: ["RTX 4060", "GeForce RTX 4060", "4060 8GB"],
-		price: 145000,
-		labelledPrice: 155000,
-		description: "Mid-range graphics card suitable for 1080p and 1440p gaming.",
-		images: [
-			"/images/products/rtx4060-front.png",
-			"/images/products/rtx4060-back.png",
-		],
-		brand: "NVIDIA",
-		model: "GeForce RTX 4060 8GB",
-		category: "Graphics Card",
-		isAvailable: true,
-		stock: 12,
-	},
-	{
-		productId: "PRD002",
-		name: "AMD Ryzen 5 7600 Processor",
-		altNames: ["Ryzen 5 7600", "AMD 7600", "R5 7600"],
-		price: 72000,
-		labelledPrice: 79000,
-		description:
-			"6-core 12-thread desktop processor with excellent gaming performance.",
-		images: [
-			"/images/products/ryzen5-7600-1.png",
-			"/images/products/ryzen5-7600-2.png",
-		],
-		brand: "AMD",
-		model: "Ryzen 5 7600",
-		category: "Processor",
-		isAvailable: true,
-		stock: 20,
-	},
-	{
-		productId: "PRD003",
-		name: "Intel Core i7-14700K",
-		altNames: ["Core i7-14700K", "i7 14700K", "Intel i7 14th Gen"],
-		price: 128000,
-		labelledPrice: 138000,
-		description:
-			"High-performance 14th Gen Intel processor for gaming and productivity workloads.",
-		images: [
-			"/images/products/i7-14700k-1.png",
-			"/images/products/i7-14700k-2.png",
-		],
-		brand: "Intel",
-		model: "Core i7-14700K",
-		category: "Processor",
-		isAvailable: true,
-		stock: 8,
-	},
-	{
-		productId: "PRD004",
-		name: "Corsair Vengeance 16GB DDR5 RAM",
-		altNames: ["16GB DDR5", "Corsair 16GB RAM", "Vengeance DDR5 16GB"],
-		price: 24500,
-		labelledPrice: 27000,
-		description: "High-speed DDR5 memory module ideal for modern desktops.",
-		images: [
-			"/images/products/corsair-ddr5-1.png",
-			"/images/products/corsair-ddr5-2.png",
-		],
-		brand: "Corsair",
-		model: "Vengeance DDR5 16GB 5600MHz",
-		category: "RAM",
-		isAvailable: true,
-		stock: 30,
-	},
-	{
-		productId: "PRD005",
-		name: "Samsung 990 PRO 1TB NVMe SSD",
-		altNames: ["990 PRO 1TB", "Samsung NVMe 1TB", "Samsung SSD 1TB"],
-		price: 39500,
-		labelledPrice: 43000,
-		description:
-			"High-speed PCIe 4.0 NVMe SSD for fast boot times and application loading.",
-		images: [
-			"/images/products/samsung-990pro-1.png",
-			"/images/products/samsung-990pro-2.png",
-		],
-		brand: "Samsung",
-		model: "990 PRO 1TB",
-		category: "Storage",
-		isAvailable: true,
-		stock: 18,
-	},
-	{
-		productId: "PRD006",
-		name: "ASUS TUF Gaming B650-PLUS WiFi Motherboard",
-		altNames: ["B650 Motherboard", "ASUS B650", "TUF B650 WiFi"],
-		price: 89000,
-		labelledPrice: 96000,
-		description:
-			"AM5 motherboard with WiFi support, suitable for Ryzen 7000 series processors.",
-		images: [
-			"/images/products/asus-b650-1.png",
-			"/images/products/asus-b650-2.png",
-		],
-		brand: "ASUS",
-		model: "TUF Gaming B650-PLUS WiFi",
-		category: "Motherboard",
-		isAvailable: true,
-		stock: 10,
-	},
-];
-
+//mapper function
 export default function AdminProductsPage() {
-	const [products, setProducts] = useState(sampleProducts);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-	return (
-		<div className="w-full h-full ">
-			{products.map(
-                (product, index) => {
-				// toast.success(product.productId + "-" + index);
+    useEffect(() => { 
+        if (loading) {
+            const token = localStorage.getItem("token");
+            api
+                .get("/products", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((res) => {
+                    console.log(res.data);
+                    setProducts(res.data);
+                    setLoading(false);
+                });
+        }
+    }, [loading]);
 
-				return (
-					<div key={product.productId}>{/*unique key should be add, we acan use index also*/}
-						<p>
-							{product.productId} - {product.name} - {product.price}
-						</p>
-					</div>
-				);
-			})}
-			
-			<Link
-				to="/admin/add-product"
-				className="bg-accent w-[80px] h-[80px] rounded-full text-white text-2xl flex justify-center items-center fixed bottom-4 right-4 shadow-2xl hover:bg-white hover:text-accent"
-			>
-				<FaPlus />
-			</Link>
-		</div>
-	);
+    return (
+        <div className="w-full h-full p-6 text-gray-100">
+            {/* Header Section - Glass Effect */}
+            <div className="w-full bg-black/30 backdrop-blur-lg border border-white/10 mb-8 rounded-xl flex p-6 items-center justify-between shadow-xl">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">All Products</h1>
+                    <p className="text-sm text-gray-400 mt-1">Manage your inventory and product details</p>
+                </div>
+                <div className="px-4 py-2 bg-blue-500/20 text-blue-300 font-semibold rounded-lg border border-blue-500/30 backdrop-blur-md">
+                    {products.length} Products
+                </div>                
+            </div>
+            
+            {
+                loading && <LoadingScreen/>
+            }
+            
+            {/* Table Section - Glass Effect */}
+            <div className="w-full bg-black/30 backdrop-blur-lg rounded-xl overflow-x-auto border border-white/10 shadow-2xl pb-20">
+                <table className="w-full text-left whitespace-nowrap">
+                    <thead className="bg-black/40 text-gray-300 text-sm uppercase tracking-wider border-b border-white/10">
+                        <tr>
+                            <th className="px-6 py-4 font-semibold">Image</th>
+                            <th className="px-6 py-4 font-semibold">Product ID</th>
+                            <th className="px-6 py-4 font-semibold">Name</th>
+                            <th className="px-6 py-4 font-semibold">Price</th>
+                            <th className="px-6 py-4 font-semibold">Labelled Price</th>
+                            <th className="px-6 py-4 font-semibold">Brand</th>
+                            <th className="px-6 py-4 font-semibold">Model</th>
+                            <th className="px-6 py-4 font-semibold">Category</th>
+                            <th className="px-6 py-4 font-semibold text-center">Availability</th>
+                            <th className="px-6 py-4 font-semibold text-center">Stock</th>
+                            <th className="px-6 py-4 font-semibold text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5 text-gray-200">
+                        {products.map((product) => {
+                            return (
+                                <tr className="hover:bg-white/5 transition-colors duration-200" key={product.productId}>
+                                    <td className="px-6 py-4">
+                                        <div className="w-12 h-12 rounded-lg bg-black/50 flex items-center justify-center overflow-hidden border border-white/10">
+                                            <img
+                                                src={product.images[0]}
+                                                alt={product.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 font-medium text-white">{product.productId}</td>
+                                    <td className="px-6 py-4">{product.name}</td>
+                                    <td className="px-6 py-4 font-semibold text-emerald-400">{getFormattedPrice(product.price)}</td>
+                                    <td className="px-6 py-4 text-gray-500 line-through text-sm">{getFormattedPrice(product.labelledPrice)}</td>
+                                    <td className="px-6 py-4 capitalize">{product.brand}</td>
+                                    <td className="px-6 py-4">{product.model}</td>
+                                    <td className="px-6 py-4 capitalize">{product.category}</td>
+                                    <td className="px-6 py-4 text-center">
+                                        <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
+                                            product.isAvailable
+                                                ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                                                : "bg-red-500/20 text-red-300 border-red-500/30"
+                                        }`}>
+                                            {product.isAvailable ? "Available" : "Out of Stock"}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-center font-medium">{product.stock}</td>
+                                    <td className="px-6 py-4">
+                                        <div className="flex justify-center items-center gap-3">
+                                            <Link 
+                                                to="/admin/edit-product" 
+                                                state={product} 
+                                                className="p-2 bg-blue-500/20 text-blue-300 rounded-lg border border-blue-500/30 hover:bg-blue-500 hover:text-white transition-all duration-200"
+                                                title="Edit Product"
+                                            >
+                                                <CiEdit className="text-xl" />
+                                            </Link>
+                                            <div className="p-2 bg-red-500/20 text-red-300 rounded-lg border border-red-500/30 hover:bg-red-500 hover:text-white transition-all duration-200 cursor-pointer">
+                                                <ProductDeleteButton productId={product.productId} refresh={()=>setLoading(true)} />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+
+            {/* Floating Action Button - Glass Effect */}
+            <Link
+                to="/admin/add-product"
+                className="bg-blue-600/90 backdrop-blur-md border border-white/20 w-16 h-16 rounded-full text-white text-2xl flex justify-center items-center fixed bottom-8 right-8 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:bg-blue-500 hover:scale-105 transition-all duration-300 z-50"
+                title="Add New Product"
+            >
+                <FaPlus />
+            </Link>
+        </div>
+    );
 }

@@ -4,6 +4,7 @@ import { AiFillProduct } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
 import AdminProductPage from './admin/adminProductPage';
 import AdminAddProductForm from './admin/adminAddProductForm';
+import AdminEditProductForm from './Admin/adminEditProductForm';
 
 export default function AdminPage() {
   return (
@@ -59,6 +60,7 @@ export default function AdminPage() {
           <Route path='/products' element={<AdminProductPage/>} />
           <Route path='/users' element={<h1>Users Page</h1>} />
           <Route path='/add-product' element={<AdminAddProductForm/>} />
+          <Route path='/edit-product' element={<AdminEditProductForm/>} />
         </Routes>
       </div>
 

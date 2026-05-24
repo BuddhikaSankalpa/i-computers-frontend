@@ -1,15 +1,17 @@
 import axios from "axios";
+import api from "../utils/api";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { BiKey } from "react-icons/bi";
 import { BsGoogle } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import api from "../utils/api";
-import toast from "react-hot-toast";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    
     const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
@@ -17,6 +19,13 @@ export default function LoginPage() {
         async function handleLogin(){
         
         setLoading(true)
+
+        //backend post request to loginuser        
+        //app.use("/api/users" , userRouter)  
+        //userRouter.post("/login",loginUser)
+
+        //BACKEND NEED EMAIL AND PASSWORD TO LOGIN USER
+        //const email = req.body.email and const password = req.body.password
 
         try{
             const res = await api.post("/users/login",{

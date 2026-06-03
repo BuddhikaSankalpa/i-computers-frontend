@@ -13,16 +13,16 @@ export default function CartPage(){
                 cart.map(
                     (cartItem, index) => {
                         return (
-                            <div className="w-[600px] h-[150px]  shadow-2xl bg-white my-4 flex flex-row relative" key={index}>
+                            <div className="w-150 h-37.5 shadow-2xl bg-white my-4 flex flex-row relative" key={index}>
                                 <img src={cartItem.product.image} className="h-full aspect-square"/>
                             
-                                <div className="h-full  w-[450px] flex flex-col  p-4">
+                                <div className="h-full w-112.5 flex flex-col p-4">
                                     <h3 className="text-lg font-bold">{cartItem.product.name}</h3>
                                     {/* labelled price */}
                                     <p className="text-gray-500 text-sm line-through">{getFormattedPrice(cartItem.product.labelledPrice)}</p>
                                     <p className="text-accent font-semibold">{getFormattedPrice(cartItem.product.price)}</p>
-                                    <div className="h-[30px] w-[100px] mt-2 border border-accent rounded-4xl flex flex-row items-center justify-center overflow-hidden">
-                                        <button className="w-[30px] h-full hover:bg-accent hover:text-white"
+                                    <div className="h-7.5 w-25 mt-2 border border-accent rounded-4xl flex flex-row items-center justify-center overflow-hidden">
+                                        <button className="w-7.5 h-full hover:bg-accent hover:text-white"
                                         onClick={
                                             ()=>{
                                                 addToCart(cartItem.product , -1)
@@ -31,10 +31,10 @@ export default function CartPage(){
                                         }>
                                             -
                                         </button>
-                                        <span className="w-[40px] h-full flex justify-center items-center">
+                                        <span className="w-10 h-full flex justify-center items-center">
                                             {cartItem.qty}
                                         </span>
-                                        <button className="w-[30px] h-full hover:bg-accent hover:text-white"
+                                        <button className="w-7.5 h-full hover:bg-accent hover:text-white"
                                         onClick={
                                             ()=>{
                                                 addToCart(cartItem.product , 1)
@@ -64,8 +64,8 @@ export default function CartPage(){
                 )
             }
 
-            <div className="w-[600px] h-[150px] sticky bottom-0  shadow-2xl bg-white my-4 flex flex-row items-center justify-between p-4">
-                <Link to="/checkout" className="w-[220px] p-2 text-white bg-accent rounded-sm hover:bg-accent/90 text-center" state={cart}>
+            <div className="w-150 h-37.5 sticky bottom-0 shadow-2xl bg-white my-4 flex flex-row items-center justify-between p-4">
+                <Link to="/checkout" className="w-[220px] p-3 text-white bg-linear-to-r from-sky-600 to-blue-700 rounded-lg font-semibold text-center shadow-lg shadow-blue-700/25 hover:from-sky-500 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 transition-all" state={cart}>
                     Checkout
                 </Link>
                 <div className="flex justify-end h-full items-center">

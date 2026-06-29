@@ -1,10 +1,46 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import UserData from "./userData";
 import { ShoppingCart, Search, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Header(){
     const location = useLocation();
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [headerSearch, setHeaderSearch] = useState("");
+
+    useEffect(() => {
+        if (location.pathname === "/products") {
+            setHeaderSearch(searchParams.get("search") || "");
+        } else {
+            setHeaderSearch("");
+        }
+    }, [location.pathname, searchParams]);
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        const query = headerSearch.trim();
+        if (query) {
+            navigate(`/products?search=${encodeURIComponent(query)}`);
+        } else {
+            navigate(`/products`);
+        }
+    };
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setHeaderSearch(value);
+        if (location.pathname === "/products") {
+            const newParams = new URLSearchParams(searchParams);
+            if (value) {
+                newParams.set("search", value);
+            } else {
+                newParams.delete("search");
+            }
+            setSearchParams(newParams, { replace: true });
+        }
+    };
 
     const navLinks = [
         { name: "Home", path: "/" },
@@ -43,9 +79,18 @@ export default function Header(){
             </nav>
 
             <div className="flex items-center gap-3 md:gap-4">
-                <button className="hidden md:flex w-10 h-10 justify-center items-center text-[#A0AEC0] hover:text-[#00E5FF] transition-colors">
-                    <Search size={20} />
-                </button>
+                <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-4 h-10 focus-within:border-[#00E5FF]/50 focus-within:bg-[#00E5FF]/5 transition-all duration-300">
+                    <input 
+                        type="text"
+                        placeholder="Search products..."
+                        value={headerSearch}
+                        onChange={handleSearchChange}
+                        className="bg-transparent text-white text-sm outline-none w-24 lg:w-48 focus:w-48 lg:focus:w-64 transition-all duration-300 placeholder:text-white/30"
+                    />
+                    <button type="submit" className="text-[#A0AEC0] hover:text-[#00E5FF] transition-colors ml-2">
+                        <Search size={16} />
+                    </button>
+                </form>
                 <Link 
                     to="/cart" 
                     className="w-10 h-10 flex justify-center items-center bg-white/5 border border-white/10 rounded-full hover:bg-[#00E5FF]/20 hover:border-[#00E5FF]/50 transition-all duration-300 group relative hover:shadow-[0_0_15px_rgba(0,229,255,0.4)]"

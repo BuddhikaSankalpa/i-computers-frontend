@@ -8,7 +8,6 @@ import MyOrders from "./myOrders";
 import Settings from "./settings";
 import HomeContent from "./homeContent";
 import Footer from "../components/footer";
-
 import AboutUs from "./aboutUs";
 import ContactUs from "./contactUs";
 

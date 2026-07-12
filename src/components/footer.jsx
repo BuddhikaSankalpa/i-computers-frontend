@@ -87,7 +87,6 @@ export default function Footer() {
                     &copy; {new Date().getFullYear()} i-Computers. All rights reserved.
                 </p>
                 <div className="flex gap-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1024px-Visa_Inc._logo.svg.png" className="h-6 opacity-50 grayscale hover:grayscale-0 transition-all" alt="Visa" />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" className="h-6 opacity-50 grayscale hover:grayscale-0 transition-all" alt="Mastercard" />
                 </div>
             </div>

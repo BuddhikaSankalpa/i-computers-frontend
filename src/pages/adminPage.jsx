@@ -7,13 +7,15 @@ import AdminAddProductForm from "./Admin/adminAddProductForm";
 import AdminEditProductForm from "./Admin/adminEditProductForm";
 import AdminOrdersPage from "./Admin/adminOrdersPage";
 import AdminUsersPage from "./Admin/adminUsersPage";
+import AdminReviews from "./Admin/AdminReviews";
+import AdminCustomBuilds from "./Admin/AdminCustomBuilds";
 import { useEffect, useState } from "react";
 import api from "../utils/api";
 import toast from "react-hot-toast";
 import LoadingScreen from "../components/loadingScreen";
-import { PackageOpen, LogOut, ShieldCheck, Home } from "lucide-react";
+import { PackageOpen, LogOut, ShieldCheck, Home, MessageSquare, Cpu } from "lucide-react";
 
-export default function AdminPage(){
+export default function AdminPage() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,25 +23,25 @@ export default function AdminPage(){
     useEffect(() => {
         const token = localStorage.getItem("token");
 
-        if(token != null){
-            api.get("/users/me" , {
-                headers : {
-                    "Authorization" : `Bearer ${token}`
+        if (token != null) {
+            api.get("/users/me", {
+                headers: {
+                    "Authorization": `Bearer ${token}`
                 }
-            }).then((res)=>{
-                if(res.data.isAdmin){
+            }).then((res) => {
+                if (res.data.isAdmin) {
                     setUser(res.data);
-                }else{
+                } else {
                     toast.error("You are not authorized to access this page", {
                         style: { background: '#111827', color: '#fff', border: '1px solid rgba(239,68,68,0.3)' }
                     });
                     navigate("/");
                 }
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.log(err);
                 setUser(null);
             });
-        }else{
+        } else {
             toast.error("You are not authorized to access this page", {
                 style: { background: '#111827', color: '#fff', border: '1px solid rgba(239,68,68,0.3)' }
             });
@@ -51,7 +53,7 @@ export default function AdminPage(){
         return location.pathname === path || (path !== "/admin" && location.pathname.startsWith(path));
     };
 
-    return(
+    return (
         <div className="w-full h-screen bg-[#050816] flex font-sans text-white overflow-hidden relative">
             {/* Background Effects */}
             <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-[#00E5FF]/10 rounded-full blur-[150px] pointer-events-none"></div>
@@ -59,7 +61,7 @@ export default function AdminPage(){
 
             {/* Sidebar */}
             <div className="h-full w-[280px] bg-[#111827]/80 backdrop-blur-2xl border-r border-white/10 flex flex-col shadow-2xl z-20 shrink-0">
-                
+
                 {/* Logo Area */}
                 <div className="h-[100px] w-full flex items-center px-6 border-b border-white/10">
                     <Link to="/" className="flex items-center gap-3 group">
@@ -73,8 +75,8 @@ export default function AdminPage(){
                 {/* Navigation Links */}
                 <div className="flex flex-col gap-3 px-4 py-8 flex-grow">
                     <div className="text-xs font-semibold text-[#A0AEC0] uppercase tracking-wider mb-2 px-2">Management</div>
-                    
-                    <Link 
+
+                    <Link
                         to="/admin"
                         className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
                         ${isActive("/admin") && location.pathname === "/admin" ? 'bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/30 shadow-[0_0_15px_rgba(0,229,255,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
@@ -83,7 +85,7 @@ export default function AdminPage(){
                         <span className="tracking-wide">Orders</span>
                     </Link>
 
-                    <Link 
+                    <Link
                         to="/admin/products"
                         className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
                         ${isActive("/admin/products") || isActive("/admin/add-product") || isActive("/admin/edit-product") ? 'bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/30 shadow-[0_0_15px_rgba(168,85,247,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
@@ -92,7 +94,7 @@ export default function AdminPage(){
                         <span className="tracking-wide">Products</span>
                     </Link>
 
-                    <Link 
+                    <Link
                         to="/admin/users"
                         className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
                         ${isActive("/admin/users") ? 'bg-[#FF2DA6]/20 text-[#FF2DA6] border border-[#FF2DA6]/30 shadow-[0_0_15px_rgba(255,45,166,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
@@ -100,18 +102,36 @@ export default function AdminPage(){
                         <TbUsers className={`text-xl ${isActive("/admin/users") ? 'text-[#FF2DA6]' : 'group-hover:text-white transition-colors'}`} />
                         <span className="tracking-wide">Users</span>
                     </Link>
+
+                    <Link
+                        to="/admin/reviews"
+                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
+                        ${isActive("/admin/reviews") ? 'bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/30 shadow-[0_0_15px_rgba(168,85,247,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
+                    >
+                        <MessageSquare className={`text-xl ${isActive("/admin/reviews") ? 'text-[#A855F7]' : 'group-hover:text-white transition-colors'}`} />
+                        <span className="tracking-wide">Reviews</span>
+                    </Link>
+
+                    <Link
+                        to="/admin/custom-builds"
+                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
+                        ${isActive("/admin/custom-builds") ? 'bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/30 shadow-[0_0_15px_rgba(0,229,255,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
+                    >
+                        <Cpu className={`text-xl ${isActive("/admin/custom-builds") ? 'text-[#00E5FF]' : 'group-hover:text-white transition-colors'}`} />
+                        <span className="tracking-wide">Custom Builds</span>
+                    </Link>
                 </div>
-                
+
                 {/* Bottom Actions */}
                 <div className="p-4 border-t border-white/10 space-y-2">
-                    <Link 
+                    <Link
                         to="/"
                         className="w-full h-[45px] rounded-xl font-medium flex items-center gap-3 px-4 text-[#A0AEC0] hover:bg-white/5 hover:text-white transition-all duration-300"
                     >
                         <Home size={18} />
                         <span className="tracking-wide">Back to Store</span>
                     </Link>
-                    <button 
+                    <button
                         onClick={() => {
                             localStorage.removeItem("token");
                             window.location.href = "/";
@@ -133,11 +153,13 @@ export default function AdminPage(){
                 ) : (
                     <div className="p-8 min-h-full">
                         <Routes>
-                            <Route path="/" element={<AdminOrdersPage/>}/>
-                            <Route path="/products" element={<AdminProductsPage/>}/>
-                            <Route path="/users" element={<AdminUsersPage/>}/>
-                            <Route path="/add-product" element={<AdminAddProductForm/>}/>
-                            <Route path="/edit-product" element={<AdminEditProductForm/>}/>
+                            <Route path="/" element={<AdminOrdersPage />} />
+                            <Route path="/products" element={<AdminProductsPage />} />
+                            <Route path="/users" element={<AdminUsersPage />} />
+                            <Route path="/add-product" element={<AdminAddProductForm />} />
+                            <Route path="/edit-product" element={<AdminEditProductForm />} />
+                            <Route path="/reviews" element={<AdminReviews />} />
+                            <Route path="/custom-builds" element={<AdminCustomBuilds />} />
                         </Routes>
                     </div>
                 )}

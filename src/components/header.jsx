@@ -4,7 +4,7 @@ import UserData from "./userData";
 import { ShoppingCart, Search, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function Header(){
+export default function Header() {
     const location = useLocation();
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -45,19 +45,20 @@ export default function Header(){
     const navLinks = [
         { name: "Home", path: "/" },
         { name: "Products", path: "/products" },
+        { name: "PC Builder", path: "/pc-builder" },
         { name: "About", path: "/about-us" },
         { name: "Contact", path: "/contact-us" },
     ];
 
-    return(
-        <motion.header 
+    return (
+        <motion.header
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             className="w-full h-20 bg-[#111827]/80 backdrop-blur-xl border-b border-white/5 flex justify-between px-6 md:px-12 items-center sticky top-0 z-50 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
         >
             <div className="h-full flex items-center">
                 <Link to="/" className="h-full flex items-center relative group">
-                    <img src="/logo.png" alt="i-Computers Logo" className="h-20 md:h-44 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-transform duration-300 group-hover:scale-105"/>
+                    <img src="/logo.png" alt="i-Computers Logo" className="h-20 md:h-44 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-transform duration-300 group-hover:scale-105" />
                 </Link>
             </div>
 
@@ -80,7 +81,7 @@ export default function Header(){
 
             <div className="flex items-center gap-3 md:gap-4">
                 <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-4 h-10 focus-within:border-[#00E5FF]/50 focus-within:bg-[#00E5FF]/5 transition-all duration-300">
-                    <input 
+                    <input
                         type="text"
                         placeholder="Search products..."
                         value={headerSearch}
@@ -91,14 +92,14 @@ export default function Header(){
                         <Search size={16} />
                     </button>
                 </form>
-                <Link 
-                    to="/cart" 
+                <Link
+                    to="/cart"
                     className="w-10 h-10 flex justify-center items-center bg-white/5 border border-white/10 rounded-full hover:bg-[#00E5FF]/20 hover:border-[#00E5FF]/50 transition-all duration-300 group relative hover:shadow-[0_0_15px_rgba(0,229,255,0.4)]"
                 >
                     <ShoppingCart size={18} className="text-[#A0AEC0] group-hover:text-[#00E5FF] transition-colors" />
                 </Link>
 
-                <UserData/>
+                <UserData />
 
                 <button className="md:hidden w-10 h-10 flex justify-center items-center text-[#A0AEC0] hover:text-[#00E5FF] transition-colors">
                     <Menu size={24} />

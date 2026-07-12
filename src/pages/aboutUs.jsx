@@ -70,7 +70,7 @@ export default function AboutUs() {
                     className="relative z-10 text-center max-w-4xl px-6"
                 >
                     <h1 className="text-5xl md:text-7xl font-orbitron font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-[#00E5FF] to-[#A855F7] drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]">
-                        About i-Computers
+                        About quantum parts
                     </h1>
                     <p className="text-lg md:text-xl text-[#A0AEC0] font-poppins leading-relaxed max-w-3xl mx-auto">
                         Empowering gamers, creators, professionals, and businesses with high-performance computer hardware, premium gaming accessories, and exceptional customer service.
@@ -108,7 +108,7 @@ export default function AboutUs() {
                         </h2>
                         <div className="space-y-4 text-[#A0AEC0] leading-relaxed">
                             <p>
-                                At <strong className="text-white font-semibold">i-Computers</strong>, we believe technology should be powerful, reliable, and accessible to everyone.
+                                At <strong className="text-white font-semibold">quantum parts</strong>, we believe technology should be powerful, reliable, and accessible to everyone.
                             </p>
                             <p>
                                 Our mission is to provide premium computer hardware, gaming accessories, custom-built PCs, laptops, networking equipment, and the latest technology products from trusted global brands.

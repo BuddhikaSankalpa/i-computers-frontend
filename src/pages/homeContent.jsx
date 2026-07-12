@@ -5,6 +5,7 @@ import { Shield, Zap, Truck, CreditCard, ChevronRight, ChevronLeft, Monitor, Cpu
 import api from "../utils/api";
 import ProductCard from "../components/productCard";
 import Footer from "../components/footer";
+import CustomerReviews from "../components/CustomerReviews";
 
 export default function HomeContent() {
     const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -58,7 +59,8 @@ export default function HomeContent() {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-5xl md:text-7xl font-black text-white font-orbitron leading-tight"
+                        // 👇 Changed: text-5xl to text-[48px] and md:text-7xl to md:text-[72px]
+                        className="text-[40px] md:text-[54px] font-black text-white font-orbitron leading-tight"
                     >
                         BUILD YOUR <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-[#A855F7]">ULTIMATE</span> GAMING PC
@@ -68,24 +70,32 @@ export default function HomeContent() {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-lg md:text-xl text-[#A0AEC0] max-w-xl"
+                        // 👇 Changed: text-lg to text-[18px] and md:text-xl to md:text-[22px]
+                        className="text-[18px] md:text-[14px] text-[#A0AEC0] max-w-xl"
                     >
                         Premium Gaming PCs, Components, Accessories, and Gaming Gear Delivered Across Sri Lanka.
                     </motion.p>
-                    
+                    <br/>
                     <motion.div 
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
                         className="flex flex-wrap gap-4 mt-4"
                     >
-                        <Link to="/products" className="px-8 py-4 bg-[#00E5FF] hover:bg-[#00E5FF]/90 text-black font-bold rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all flex items-center gap-2 group">
-                            Shop Now
-                            <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                        <Link 
+                            to="/products" 
+                            className="relative overflow-hidden px-8 py-3 bg-[#00E5FF] text-black hover:text-white font-bold rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_40px_rgba(115,136,255,0.8)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 ease-out group flex items-center justify-center"
+                        >
+                            {/* This is the 3-color gradient overlay. It stays invisible (opacity-0) until hover (group-hover:opacity-100) */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#00E5FF] via-[#7388FF] to-[#B266FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out z-0" />
+                            
+                            {/* We wrap the text and icon in a relative span with z-10 so it stays visible on top of the new background */}
+                            <span className="relative z-10 flex items-center gap-2">
+                                Explore Builds
+                                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            </span>
                         </Link>
-                        <Link to="/products" className="px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl backdrop-blur-md transition-all">
-                            Explore Builds
-                        </Link>
+                        
                     </motion.div>
                 </div>
             </section>
@@ -307,6 +317,8 @@ export default function HomeContent() {
             </section>
 
             
+
+            <CustomerReviews />
 
             <Footer />
         </div>

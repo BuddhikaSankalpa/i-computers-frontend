@@ -45,7 +45,7 @@ const process = [
 
 export default function WarrantyReturnPolicy() {
     return (
-        <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-20">
+        <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-2">
             {/* 1. Hero Section */}
             <section className="relative w-full h-[55vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#00E5FF]/10 via-[#A855F7]/5 to-[#050816] z-0"></div>

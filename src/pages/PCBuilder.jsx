@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Cpu, CircuitBoard, MemoryStick, MonitorCheck, HardDrive, Zap, Monitor, Check, ShoppingCart, ChevronRight, ChevronLeft, Trash2, Package } from "lucide-react";
 import { addToCart } from "../utils/cart";
 import api from "../utils/api";
-import Header from "../components/header";
 import Footer from "../components/footer";
 import toast from "react-hot-toast";
 
@@ -79,8 +78,6 @@ export default function PCBuilderPage() {
 
     return (
         <div className="min-h-screen bg-[#050816] text-white font-sans">
-            <Header />
-
             {/* Background Orbs */}
             <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-[#00E5FF]/5 rounded-full blur-[200px] pointer-events-none" />
             <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-[#A855F7]/5 rounded-full blur-[200px] pointer-events-none" />

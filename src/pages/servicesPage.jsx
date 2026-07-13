@@ -72,7 +72,7 @@ const process = [
 
 export default function ServicesPage() {
     return (
-        <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-20">
+        <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-2">
             {/* 1. Hero Section */}
             <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#A855F7]/10 via-[#00E5FF]/5 to-[#050816] z-0"></div>

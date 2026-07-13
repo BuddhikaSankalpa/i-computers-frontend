@@ -51,9 +51,9 @@ export default function ContactUs() {
     };
 
     return (
-        <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-20">
+        <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-2">
             {/* 1. Hero Section */}
-            <section className="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden mb-40">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#A855F7]/10 via-[#FF2DA6]/5 to-[#050816] z-0"></div>
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
                 
@@ -66,14 +66,14 @@ export default function ContactUs() {
                     <h1 className="text-5xl md:text-7xl font-orbitron font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-[#A855F7] to-[#FF2DA6] drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]">
                         Contact Us
                     </h1>
-                    <p className="text-lg md:text-xl text-[#A0AEC0] font-poppins leading-relaxed">
+                    <p className="text-lg md:text-xl text-[#A0AEC0] font-poppins leading-relaxed ">
                         Have questions about our products, custom PC builds, warranties, or orders? Our team is always ready to help you.
                     </p>
                 </motion.div>
             </section>
 
             {/* 2. Contact Information Cards */}
-            <section className="max-w-[1400px] mx-auto px-6 md:px-12 -mt-16 relative z-20">
+            <section className="max-w-[1400px] mx-auto px-6 md:px-12 -mt-16 relative z-20 ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {[
                         { icon: MapPin, title: "Store Address", content: "123 Main Street<br/>Colombo<br/>Sri Lanka", color: "#00E5FF" },

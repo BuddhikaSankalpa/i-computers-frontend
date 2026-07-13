@@ -3,7 +3,7 @@ import api from "../../utils/api";
 import LoadingScreen from "../../components/loadingScreen";
 import { BiRefresh } from "react-icons/bi";
 import toast from "react-hot-toast";
-import { Users, Shield, ShieldAlert, CheckCircle2, XCircle } from "lucide-react";
+import { Users, Shield, ShieldAlert, CheckCircle2, XCircle, Trash2 } from "lucide-react";
 
 export default function AdminUsersPage() {
     const [users, setUsers] = useState([]);
@@ -69,6 +69,26 @@ export default function AdminUsersPage() {
         });
     }
 
+    function handleDeleteUser(email) {
+        if (!window.confirm("Are you sure you want to delete this user?")) return;
+        const token = localStorage.getItem("token");
+        api.delete("/users/"+email, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((res) => {
+            toast.success("User deleted successfully", {
+                style: { background: '#111827', color: '#fff', border: '1px solid rgba(239,68,68,0.3)' }
+            });
+            setLoading(true);
+        }).catch((err) => {
+            console.log(err);
+            toast.error(err?.response?.data?.message || "Action failed", {
+                style: { background: '#111827', color: '#fff', border: '1px solid rgba(239,68,68,0.3)' }
+            });
+        });
+    }
+
     return (
         <div className="w-full h-full flex flex-col pb-24 text-gray-100">
             {/* Header Section */}
@@ -100,6 +120,7 @@ export default function AdminUsersPage() {
                             <th className="px-4 py-4 font-semibold">Role</th>
                             <th className="px-4 py-4 font-semibold text-center">Verified</th>
                             <th className="px-4 py-4 font-semibold text-center">Status</th>
+                            <th className="px-4 py-4 font-semibold text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
@@ -164,6 +185,19 @@ export default function AdminUsersPage() {
                                             title={user.isBlocked ? "Unblock User" : "Block User"}
                                         >
                                             <BiRefresh size={16} />
+                                        </button>
+                                    </div>
+                                </td>
+
+                                {/* Actions */}
+                                <td className="px-4 py-3 text-center">
+                                    <div className="flex justify-center">
+                                        <button 
+                                            onClick={() => handleDeleteUser(user.email)}
+                                            className="p-1.5 rounded-md bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 hover:border-red-500/40 text-red-400 hover:text-red-300 transition-all"
+                                            title="Delete User"
+                                        >
+                                            <Trash2 size={16} />
                                         </button>
                                     </div>
                                 </td>

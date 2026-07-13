@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/homePage'
 import LoginPage from './pages/loginPage'
@@ -11,6 +11,9 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import ChatBotWidget from './components/ChatBotWidget';
 
 function App() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <GoogleOAuthProvider clientId="993841355250-otst2f3p5v2fkv9bbd8p5595o5uig4aa.apps.googleusercontent.com">
       <div className='w-full h-screen '>
@@ -23,7 +26,7 @@ function App() {
           <Route path='/admin/*' element={<AdminPage />} />
           <Route path='/test' element={<TestPage />} />
         </Routes>
-        <ChatBotWidget />
+        {!isAdminRoute && <ChatBotWidget />}
       </div>
     </GoogleOAuthProvider>
   )

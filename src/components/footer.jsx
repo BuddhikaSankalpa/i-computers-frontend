@@ -84,7 +84,7 @@ export default function Footer() {
 
             <div className="max-w-[1400px] mx-auto mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="text-[#A0AEC0] text-xs">
-                    &copy; {new Date().getFullYear()} i-Computers. All rights reserved.
+                    &copy; {new Date().getFullYear()} quantumpart. All rights reserved.
                 </p>
                 <div className="flex gap-6">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" className="h-6 opacity-50 grayscale hover:grayscale-0 transition-all" alt="Mastercard" />

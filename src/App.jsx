@@ -9,6 +9,7 @@ import ForgetPasswordPage from './pages/forgetPassword'
 import PCBuilderPage from './pages/PCBuilder'
 import { Toaster } from 'react-hot-toast'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import ChatBotWidget from './components/ChatBotWidget';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/test' element={<TestPage />} />
           <Route path='/pc-builder' element={<PCBuilderPage />} />
         </Routes>
+        <ChatBotWidget />
       </div>
     </GoogleOAuthProvider>
   )

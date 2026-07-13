@@ -12,7 +12,7 @@ export default function Footer() {
                 <div className="flex flex-col gap-6">
                     <img src="/logo.png" alt="i-Computers" className="h-20 md:h-28 w-auto object-contain origin-left" />
                     <p className="text-[#A0AEC0] text-sm leading-relaxed">
-                        The ultimate destination for premium gaming PCs, high-end components, and professional gear. Build your dream rig today.
+                        The ultimate destination for premium gaming PCs, high end components, and professional gear. Build your dream rig today.
                     </p>
                     <div className="flex gap-4">
                         <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#FF2DA6] hover:border-[#FF2DA6] hover:bg-[#FF2DA6]/10 transition-all duration-300">

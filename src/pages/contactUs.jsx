@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, ShoppingBag, Wrench, Shield, Briefcase, ChevronDown, Send, CheckCircle2 } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTiktok } from "react-icons/fa";
 import { useState } from "react";
+import Footer from "../components/footer";
 
 const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +53,7 @@ export default function ContactUs() {
     return (
         <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-20">
             {/* 1. Hero Section */}
-            <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#A855F7]/10 via-[#FF2DA6]/5 to-[#050816] z-0"></div>
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
                 
@@ -312,6 +313,7 @@ export default function ContactUs() {
                     </motion.div>
                 </div>
             </section>
+            <Footer />
         </div>
     );
 }

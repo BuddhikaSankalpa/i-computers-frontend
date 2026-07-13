@@ -4,6 +4,7 @@ import {
     RefreshCw, Headphones, Building2, ArrowRight, Mail, Phone
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Footer from "../components/footer";
 
 const services = [
     {
@@ -73,7 +74,7 @@ export default function ServicesPage() {
     return (
         <div className="w-full min-h-screen bg-[#050816] text-white overflow-hidden pb-20">
             {/* 1. Hero Section */}
-            <section className="relative w-full h-[60vh] flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#A855F7]/10 via-[#00E5FF]/5 to-[#050816] z-0"></div>
 
                 {[...Array(20)].map((_, i) => (
@@ -204,6 +205,7 @@ export default function ServicesPage() {
                     </div>
                 </motion.div>
             </section>
+            <Footer />
         </div>
     );
 }

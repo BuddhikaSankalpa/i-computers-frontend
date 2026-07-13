@@ -2,6 +2,7 @@ import { motion, useInView, useAnimation } from "framer-motion";
 import { ShieldCheck, Cpu, DollarSign, Truck, Headphones, ThumbsUp, ArrowRight, Mail } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/footer";
 
 // Counter Component for stats
 function AnimatedCounter({ value, duration = 2 }) {
@@ -276,6 +277,7 @@ export default function AboutUs() {
                     </div>
                 </motion.div>
             </section>
+            <Footer />
         </div>
     );
 }

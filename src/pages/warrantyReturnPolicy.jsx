@@ -4,6 +4,7 @@ import {
     FileText, AlertTriangle, CheckCircle2, ArrowRight, Mail, Phone
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Footer from "../components/footer";
 
 const warrantyCoverage = [
     {
@@ -233,6 +234,7 @@ export default function WarrantyReturnPolicy() {
                     </div>
                 </motion.div>
             </section>
+            <Footer />
         </div>
     );
 }

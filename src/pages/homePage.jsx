@@ -14,6 +14,8 @@ import ContactUs from "./contactUs";
 import ServicesPage from "./servicesPage";
 import WarrantyReturnPolicy from "./warrantyReturnPolicy";
 import PCBuilderPage from "./PCBuilder";
+import CompleteBuildsPage from "./completeBuildsPage";
+import CompleteBuildDetailsPage from "./completeBuildDetailsPage";
 
 const PageWrapper = ({ children }) => (
     <motion.div
@@ -52,6 +54,9 @@ export default function HomePage() {
                         <Route path="/services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
                         <Route path="/pc-builder" element={<PageWrapper><PCBuilderPage /></PageWrapper>} />
                         <Route path="/warranty-returns" element={<PageWrapper><WarrantyReturnPolicy /></PageWrapper>} />
+                        
+                        <Route path="/complete-builds" element={<PageWrapper><CompleteBuildsPage /></PageWrapper>} />
+                        <Route path="/complete-builds/:id" element={<PageWrapper><CompleteBuildDetailsPage /></PageWrapper>} />
 
                         <Route path="/*" element={
                             <PageWrapper>

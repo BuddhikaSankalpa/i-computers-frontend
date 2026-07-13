@@ -9,11 +9,14 @@ import AdminOrdersPage from "./Admin/adminOrdersPage";
 import AdminUsersPage from "./Admin/adminUsersPage";
 import AdminReviews from "./Admin/AdminReviews";
 import AdminCustomBuilds from "./Admin/AdminCustomBuilds";
+import AdminCompleteBuildsPage from "./Admin/adminCompleteBuildsPage";
+import AdminAddCompleteBuildForm from "./Admin/adminAddCompleteBuildForm";
+import AdminEditCompleteBuildForm from "./Admin/adminEditCompleteBuildForm";
 import { useEffect, useState } from "react";
 import api from "../utils/api";
 import toast from "react-hot-toast";
 import LoadingScreen from "../components/loadingScreen";
-import { PackageOpen, LogOut, ShieldCheck, Home, MessageSquare, Cpu } from "lucide-react";
+import { PackageOpen, LogOut, ShieldCheck, Home, MessageSquare, Cpu, Server } from "lucide-react";
 
 export default function AdminPage() {
     const [user, setUser] = useState(null);
@@ -120,6 +123,15 @@ export default function AdminPage() {
                         <Cpu className={`text-xl ${isActive("/admin/custom-builds") ? 'text-[#00E5FF]' : 'group-hover:text-white transition-colors'}`} />
                         <span className="tracking-wide">Custom Builds</span>
                     </Link>
+
+                    <Link
+                        to="/admin/complete-builds"
+                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
+                        ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'bg-[#FF2DA6]/20 text-[#FF2DA6] border border-[#FF2DA6]/30 shadow-[0_0_15px_rgba(255,45,166,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
+                    >
+                        <Server className={`text-xl ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'text-[#FF2DA6]' : 'group-hover:text-white transition-colors'}`} />
+                        <span className="tracking-wide">Complete Builds</span>
+                    </Link>
                 </div>
 
                 {/* Bottom Actions */}
@@ -133,8 +145,10 @@ export default function AdminPage() {
                     </Link>
                     <button
                         onClick={() => {
-                            localStorage.removeItem("token");
-                            window.location.href = "/";
+                            if (window.confirm("Are you sure you want to logout?")) {
+                                localStorage.removeItem("token");
+                                window.location.href = "/";
+                            }
                         }}
                         className="w-full h-[45px] rounded-xl font-medium flex items-center gap-3 px-4 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-all duration-300"
                     >
@@ -160,6 +174,9 @@ export default function AdminPage() {
                             <Route path="/edit-product" element={<AdminEditProductForm />} />
                             <Route path="/reviews" element={<AdminReviews />} />
                             <Route path="/custom-builds" element={<AdminCustomBuilds />} />
+                            <Route path="/complete-builds" element={<AdminCompleteBuildsPage />} />
+                            <Route path="/add-complete-build" element={<AdminAddCompleteBuildForm />} />
+                            <Route path="/edit-complete-build" element={<AdminEditCompleteBuildForm />} />
                         </Routes>
                     </div>
                 )}

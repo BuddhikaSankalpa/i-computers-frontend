@@ -101,7 +101,7 @@ export default function App() {
             className="flex flex-wrap gap-4 mt-4"
         >
             <Link 
-                to="/products" 
+                to="/complete-builds" 
                 className="relative overflow-hidden px-8 py-3 bg-[#00E5FF] text-black hover:text-white font-bold rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_40px_rgba(115,136,255,0.8)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 ease-out group flex items-center justify-center"
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00E5FF] via-[#7388FF] to-[#B266FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out z-0" />

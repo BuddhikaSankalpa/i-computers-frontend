@@ -57,6 +57,28 @@ export default function ContactUs() {
                 <div className="absolute inset-0 bg-gradient-to-b from-[#A855F7]/10 via-[#FF2DA6]/5 to-[#050816] z-0"></div>
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
                 
+                {/* Floating Particles */}
+                {[...Array(20)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-1.5 h-1.5 bg-[#00E5FF] rounded-full blur-[1px]"
+                        initial={{
+                            x: Math.random() * window.innerWidth,
+                            y: Math.random() * window.innerHeight,
+                            opacity: Math.random() * 0.5 + 0.3
+                        }}
+                        animate={{
+                            y: [null, Math.random() * -200],
+                            opacity: [null, 0]
+                        }}
+                        transition={{
+                            duration: Math.random() * 5 + 5,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }}
+                    />
+                ))}
+
                 <motion.div 
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}

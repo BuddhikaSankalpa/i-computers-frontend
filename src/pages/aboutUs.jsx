@@ -73,7 +73,7 @@ export default function AboutUs() {
                         About quantum parts
                     </h1>
                     <p className="text-lg md:text-xl text-[#A0AEC0] font-poppins leading-relaxed max-w-3xl mx-auto">
-                        Empowering gamers, creators, professionals, and businesses with high-performance computer hardware, premium gaming accessories, and exceptional customer service.
+                        Empowering gamers, creators, professionals, and businesses with high performance computer hardware, premium gaming accessories, and exceptional customer service.
                     </p>
                 </motion.div>
             </section>

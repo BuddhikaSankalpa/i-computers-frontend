@@ -46,8 +46,10 @@ export default function Header() {
         { name: "Home", path: "/" },
         { name: "Products", path: "/products" },
         { name: "PC Builder", path: "/pc-builder" },
-        { name: "About", path: "/about-us" },
+        { name: "Services", path: "/services" },
         { name: "Contact", path: "/contact-us" },
+        { name: "About", path: "/about-us" },
+        { name: "Policies", path: "/warranty-returns" }
     ];
 
     return (

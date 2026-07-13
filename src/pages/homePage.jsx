@@ -10,6 +10,8 @@ import HomeContent from "./homeContent";
 import Footer from "../components/footer";
 import AboutUs from "./aboutUs";
 import ContactUs from "./contactUs";
+import ServicesPage from "./servicesPage";
+import WarrantyReturnPolicy from "./warrantyReturnPolicy";
 
 export default function HomePage() {
 	return (
@@ -31,6 +33,8 @@ export default function HomePage() {
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/my-orders" element={<MyOrders/>} />
                     <Route path="/settings" element={<Settings/>} />
+                    <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/warranty-returns" element={<WarrantyReturnPolicy />} />
 
                     <Route path="/*" element={
                         <div className="flex-grow flex flex-col items-center justify-center py-32 min-h-[60vh]">

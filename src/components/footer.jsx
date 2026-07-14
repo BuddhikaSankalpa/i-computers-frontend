@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {/* Brand Info */}
                 <div className="flex flex-col gap-6">
-                    <img src="/logo.png" alt="i-Computers" className="h-20 md:h-28 w-auto object-contain origin-left" />
+                    <img src="https://vygslztoywtzdpltsnnk.supabase.co/storage/v1/object/public/otherImages/images/logo.png" alt="i-Computers" className="h-20 md:h-28 w-auto object-contain origin-left" />
                     <p className="text-[#A0AEC0] text-sm leading-relaxed">
                         The ultimate destination for premium gaming PCs, high end components, and professional gear. Build your dream rig today.
                     </p>

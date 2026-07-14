@@ -8,13 +8,13 @@ import Footer from "../components/footer";
 import toast from "react-hot-toast";
 
 const BUILD_STEPS = [
-    { key: "CPU", label: "Processor", icon: Cpu, category: "CPU", color: "#00E5FF", desc: "The brain of your build" },
-    { key: "Motherboard", label: "Motherboard", icon: CircuitBoard, category: "Motherboard", color: "#A855F7", desc: "Connects all components" },
-    { key: "RAM", label: "Memory (RAM)", icon: MemoryStick, category: "RAM", color: "#FF2DA6", desc: "Your system's working memory" },
-    { key: "GPU", label: "Graphics Card", icon: MonitorCheck, category: "GPU", color: "#00E5FF", desc: "Powers your visuals" },
-    { key: "Storage", label: "Storage (SSD)", icon: HardDrive, category: "Storage", color: "#A855F7", desc: "Where your data lives" },
-    { key: "PSU", label: "Power Supply", icon: Zap, category: "PSU", color: "#FF2DA6", desc: "Powers your entire rig" },
-    { key: "Monitor", label: "Monitor", icon: Monitor, category: "Monitor", color: "#00E5FF", desc: "Your window to the game" },
+    { key: "CPU", label: "Processor", icon: Cpu, category: "cpu", color: "#00E5FF", desc: "The brain of your build" },
+    { key: "Motherboard", label: "Motherboard", icon: CircuitBoard, category: "motherboard", color: "#A855F7", desc: "Connects all components" },
+    { key: "RAM", label: "Memory (RAM)", icon: MemoryStick, category: "ram", color: "#FF2DA6", desc: "Your system's working memory" },
+    { key: "GPU", label: "Graphics Card", icon: MonitorCheck, category: "graphic card", color: "#00E5FF", desc: "Powers your visuals" },
+    { key: "Storage", label: "Storage (SSD)", icon: HardDrive, category: "storage,ssd", color: "#A855F7", desc: "Where your data lives" },
+    { key: "PSU", label: "Power Supply", icon: Zap, category: "power supply", color: "#FF2DA6", desc: "Powers your entire rig" },
+    { key: "Monitor", label: "Monitor", icon: Monitor, category: "monitor", color: "#00E5FF", desc: "Your window to the game" },
 ];
 
 function formatPrice(price) {

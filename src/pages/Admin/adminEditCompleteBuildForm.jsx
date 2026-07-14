@@ -140,14 +140,14 @@ export default function AdminEditCompleteBuildForm() {
                 </div>
                 <div className="w-full md:w-[24%] flex flex-col px-2">
                     <label className={labelClassName}>Availability</label>
-                    <select value={isAvailable} onChange={(e) => { setIsAvailable(e.target.value === 'true') }} className={`${inputClassName} bg-gray-900`}>
+                    <select value={isAvailable} onChange={(e) => { setIsAvailable(e.target.value === 'true') }} className={`${inputClassName} text-white/80 [&>option]:bg-gray-900 [&>option]:text-white outline-none cursor-pointer`}>
                         <option value={true}>Available</option>
                         <option value={false}>Unavailable</option>
                     </select>
                 </div>
                 <div className="w-full md:w-[24%] flex flex-col px-2">
                     <label className={labelClassName}>Stock Quantity</label>
-                    <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} className={inputClassName} placeholder="0" />
+                    <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} className={inputClassName} style={{ colorScheme: "dark" }} placeholder="0" />
                 </div>
                 <div className="w-full md:w-[24%] flex flex-col px-2">
                     <label className={labelClassName}>Brand (optional)</label>

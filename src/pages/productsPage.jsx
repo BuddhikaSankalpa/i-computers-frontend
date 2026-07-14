@@ -13,11 +13,24 @@ export default function ProductsPage(){
     const [searchParams, setSearchParams] = useSearchParams();
 
     const query = searchParams.get("search") || "";
-    const selectedCategories = searchParams.getAll("category");
-    const selectedBrands = searchParams.getAll("brand");
+    
+    // 1. Create state variables for filters
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedBrands, setSelectedBrands] = useState([]);
 
+    // 2. Fetch products whenever selectedCategories or selectedBrands changes
     useEffect(()=>{
-        api.get("/products")
+        setLoading(true);
+        
+        const params = new URLSearchParams();
+        if (selectedCategories.length > 0) {
+            params.append("category", selectedCategories.join(','));
+        }
+        if (selectedBrands.length > 0) {
+            params.append("brand", selectedBrands.join(','));
+        }
+
+        api.get(`/products?${params.toString()}`)
         .then((response) => {
             setAllProducts(response.data);
             setLoading(false);
@@ -26,7 +39,7 @@ export default function ProductsPage(){
             console.error("Error fetching products:", error);
             setLoading(false);
         });
-    }, []);
+    }, [selectedCategories, selectedBrands]);
 
     const filteredProducts = useMemo(() => {
         return allProducts.filter(product => {
@@ -36,13 +49,10 @@ export default function ProductsPage(){
                 (product.brand || "").toLowerCase().includes(searchText) ||
                 (product.category || "").toLowerCase().includes(searchText)
             );
-
-            const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
-            const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-
-            return matchesSearch && matchesCategory && matchesBrand;
+            // Category and Brand filtering is now handled by the backend
+            return matchesSearch;
         });
-    }, [allProducts, query, selectedCategories, selectedBrands]);
+    }, [allProducts, query]);
 
     const handleSearchChange = (e) => {
         const newParams = new URLSearchParams(searchParams);
@@ -54,24 +64,49 @@ export default function ProductsPage(){
         setSearchParams(newParams, { replace: true });
     };
 
+    // 3. handleFilterChange to update state arrays
     const handleFilterChange = (type, value) => {
-        const newParams = new URLSearchParams(searchParams);
-        const currentValues = newParams.getAll(type);
-        if (currentValues.includes(value)) {
-            newParams.delete(type);
-            currentValues.filter(v => v !== value).forEach(v => newParams.append(type, v));
-        } else {
-            newParams.append(type, value);
+        if (type === "category") {
+            setSelectedCategories(prev => 
+                prev.includes(value) ? prev.filter(c => c !== value) : [...prev, value]
+            );
+        } else if (type === "brand") {
+            setSelectedBrands(prev => 
+                prev.includes(value) ? prev.filter(b => b !== value) : [...prev, value]
+            );
         }
-        setSearchParams(newParams);
     };
 
+    // 4. Reset Filters function
     const resetFilters = () => {
+        setSelectedCategories([]);
+        setSelectedBrands([]);
         setSearchParams({});
     };
 
-    const categories = ["Gaming PCs", "Laptops", "Graphics Cards", "Processors", "Monitors", "Accessories"];
-    const brands = ["ASUS", "MSI", "Corsair", "NVIDIA", "AMD"];
+    const categories = [
+        { label: "Laptops", value: "laptops" },
+        { label: "Graphics Cards", value: "graphic card" },
+        { label: "Processors", value: "cpu" },
+        { label: "Motherboards", value: "motherboard" },
+        { label: "RAM", value: "ram" },
+        { label: "Storage", value: "storage" },
+        { label: "SSD", value: "ssd" },
+        { label: "Monitors", value: "monitor" },
+        { label: "Mouse", value: "mouse" },
+        { label: "Keyboards", value: "keyboards" },
+        { label: "Cases", value: "case" }
+    ];
+    
+    const brands = [
+        { label: "ASUS", value: "asus" },
+        { label: "MSI", value: "msi" },
+        { label: "Corsair", value: "corsair" },
+        { label: "NVIDIA", value: "nvidia" },
+        { label: "AMD", value: "amd" },
+        { label: "Logitech", value: "logitech" },
+        { label: "Red Dragon", value: "red dragon" }
+    ];
 
     return (
         <div className="w-full min-h-screen bg-[#050816] flex flex-col pt-10">
@@ -115,9 +150,9 @@ export default function ProductsPage(){
                             </h3>
                             <div className="flex flex-col gap-2">
                                 {categories.map(cat => {
-                                    const isChecked = selectedCategories.includes(cat);
+                                    const isChecked = selectedCategories.includes(cat.value);
                                     return (
-                                        <label key={cat} className="flex items-center gap-3 text-[#A0AEC0] hover:text-white cursor-pointer group">
+                                        <label key={cat.value} className="flex items-center gap-3 text-[#A0AEC0] hover:text-white cursor-pointer group">
                                             <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isChecked ? 'bg-[#00E5FF] border-[#00E5FF]' : 'border-white/20 group-hover:border-[#00E5FF]'}`}>
                                                 {isChecked && <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>}
                                             </div>
@@ -125,9 +160,9 @@ export default function ProductsPage(){
                                                 type="checkbox" 
                                                 className="hidden" 
                                                 checked={isChecked}
-                                                onChange={() => handleFilterChange("category", cat)}
+                                                onChange={() => handleFilterChange("category", cat.value)}
                                             />
-                                            <span className="text-sm">{cat}</span>
+                                            <span className="text-sm">{cat.label}</span>
                                         </label>
                                     );
                                 })}
@@ -141,9 +176,9 @@ export default function ProductsPage(){
                             </h3>
                             <div className="flex flex-col gap-2">
                                 {brands.map(brand => {
-                                    const isChecked = selectedBrands.includes(brand);
+                                    const isChecked = selectedBrands.includes(brand.value);
                                     return (
-                                        <label key={brand} className="flex items-center gap-3 text-[#A0AEC0] hover:text-white cursor-pointer group">
+                                        <label key={brand.value} className="flex items-center gap-3 text-[#A0AEC0] hover:text-white cursor-pointer group">
                                             <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isChecked ? 'bg-[#A855F7] border-[#A855F7]' : 'border-white/20 group-hover:border-[#A855F7]'}`}>
                                                 {isChecked && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>}
                                             </div>
@@ -151,9 +186,9 @@ export default function ProductsPage(){
                                                 type="checkbox" 
                                                 className="hidden" 
                                                 checked={isChecked}
-                                                onChange={() => handleFilterChange("brand", brand)}
+                                                onChange={() => handleFilterChange("brand", brand.value)}
                                             />
-                                            <span className="text-sm">{brand}</span>
+                                            <span className="text-sm">{brand.label}</span>
                                         </label>
                                     );
                                 })}

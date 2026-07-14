@@ -200,6 +200,7 @@ export default function AdminAddProductForm(){
             <option value="cpu">CPU</option>
             <option value="ram">RAM</option>
             <option value="storage">Storage</option>
+            <option value="ssd">SSD</option>
             <option value="power supply">Power Supply</option>
             <option value="case">Case</option>
             <option value="cooling">Cooling</option>
@@ -208,6 +209,7 @@ export default function AdminAddProductForm(){
             <option value="keyboards">Keyboards</option>
             <option value="mouse">Mouse</option>
             <option value="laptops">Laptops</option>
+            <option value="monitor">Monitors</option>
             <option value="others">Others</option>
           </select>
         </div>

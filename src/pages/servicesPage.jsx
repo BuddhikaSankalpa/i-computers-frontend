@@ -10,7 +10,7 @@ const services = [
     {
         icon: Cpu,
         title: "Custom PC Building",
-        desc: "Tell us your budget and use case — gaming, editing, or workstation — and we'll hand-pick and assemble the perfect build for you.",
+        desc: "Tell us your budget and use case gaming, editing, or workstation and we'll hand-pick and assemble the perfect build for you.",
         color: "#00E5FF"
     },
     {
@@ -58,7 +58,7 @@ const services = [
     {
         icon: Headphones,
         title: "Free Consultation",
-        desc: "Not sure what you need? Chat with our experts before you buy — no pressure, just honest advice.",
+        desc: "Not sure what you need? Chat with our experts before you buy no pressure, just honest advice.",
         color: "#FF2DA6"
     }
 ];
@@ -193,7 +193,7 @@ export default function ServicesPage() {
                 >
                     <h2 className="text-3xl md:text-5xl font-orbitron font-bold text-white mb-6">Need a Hand With Your Setup?</h2>
                     <p className="text-[#A0AEC0] font-poppins mb-10 max-w-2xl mx-auto">
-                        Whether it's a repair, a custom build, or expert advice — our team is ready to help.
+                        Whether it's a repair, a custom build, or expert advice our team is ready to help.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Link to="/contact-us" className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-[#A855F7] to-[#7c3aed] text-white font-bold font-poppins rounded-lg shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group">

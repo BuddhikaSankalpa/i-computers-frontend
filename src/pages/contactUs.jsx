@@ -316,15 +316,17 @@ export default function ContactUs() {
                             <h3 className="text-lg font-orbitron font-bold text-[#A0AEC0] mb-4">Connect With Us</h3>
                             <div className="flex gap-4">
                                 {[
-                                    { icon: FaFacebook, color: "hover:text-[#1877F2] hover:border-[#1877F2] hover:shadow-[0_0_15px_rgba(24,119,242,0.5)]" },
-                                    { icon: FaInstagram, color: "hover:text-[#E1306C] hover:border-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.5)]" },
-                                    { icon: FaLinkedin, color: "hover:text-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_15px_rgba(10,102,194,0.5)]" },
-                                    { icon: FaYoutube, color: "hover:text-[#FF0000] hover:border-[#FF0000] hover:shadow-[0_0_15px_rgba(255,0,0,0.5)]" },
-                                    { icon: FaTiktok, color: "hover:text-[#00E5FF] hover:border-[#00E5FF] hover:shadow-[0_0_15px_rgba(0,229,255,0.5)]" }
+                                    { icon: FaFacebook, color: "hover:text-[#1877F2] hover:border-[#1877F2] hover:shadow-[0_0_15px_rgba(24,119,242,0.5)]", link: "https://www.facebook.com/" },
+                                    { icon: FaInstagram, color: "hover:text-[#E1306C] hover:border-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.5)]", link: "https://www.instagram.com/" },
+                                    { icon: FaLinkedin, color: "hover:text-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_15px_rgba(10,102,194,0.5)]", link: "https://www.linkedin.com/" },
+                                    { icon: FaYoutube, color: "hover:text-[#FF0000] hover:border-[#FF0000] hover:shadow-[0_0_15px_rgba(255,0,0,0.5)]", link: "https://www.youtube.com/" },
+                                    { icon: FaTiktok, color: "hover:text-[#00E5FF] hover:border-[#00E5FF] hover:shadow-[0_0_15px_rgba(0,229,255,0.5)]", link: "https://www.tiktok.com/" }
                                 ].map((social, idx) => (
                                     <a 
                                         key={idx} 
-                                        href="#" 
+                                        href={social.link} 
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className={`w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 transition-all duration-300 ${social.color}`}
                                     >
                                         <social.icon size={20} />

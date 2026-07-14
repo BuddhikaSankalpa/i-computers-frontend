@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail } from "lucide-react";
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaCcVisa, FaCcMastercard, FaCcPaypal, FaCcAmex } from "react-icons/fa";
 
 export default function Footer() {
     return (
@@ -15,16 +15,16 @@ export default function Footer() {
                         The ultimate destination for premium gaming PCs, high end components, and professional gear. Build your dream rig today.
                     </p>
                     <div className="flex gap-4">
-                        <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#FF2DA6] hover:border-[#FF2DA6] hover:bg-[#FF2DA6]/10 transition-all duration-300">
+                        <a href="https://www.facebook.com/" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#FF2DA6] hover:border-[#FF2DA6] hover:bg-[#FF2DA6]/10 transition-all duration-300">
                             <FaFacebook size={18} />
                         </a>
-                        <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#00E5FF] hover:border-[#00E5FF] hover:bg-[#00E5FF]/10 transition-all duration-300">
+                        <a href="https://x.com/" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#00E5FF] hover:border-[#00E5FF] hover:bg-[#00E5FF]/10 transition-all duration-300">
                             <FaTwitter size={18} />
                         </a>
-                        <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#A855F7] hover:border-[#A855F7] hover:bg-[#A855F7]/10 transition-all duration-300">
+                        <a href="https://www.instagram.com/" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-[#A855F7] hover:border-[#A855F7] hover:bg-[#A855F7]/10 transition-all duration-300">
                             <FaInstagram size={18} />
                         </a>
-                        <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-red-500 hover:border-red-500 hover:bg-red-500/10 transition-all duration-300">
+                        <a href="https://www.youtube.com/" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#A0AEC0] hover:text-red-500 hover:border-red-500 hover:bg-red-500/10 transition-all duration-300">
                             <FaYoutube size={18} />
                         </a>
                     </div>
@@ -38,6 +38,12 @@ export default function Footer() {
                     </Link>
                     <Link to="/products" className="text-[#A0AEC0] hover:text-[#00E5FF] transition-colors text-sm flex items-center gap-2 group">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]/0 group-hover:bg-[#00E5FF] transition-all"></span> Products
+                    </Link>
+                    <Link to="/pc-builder" className="text-[#A0AEC0] hover:text-[#00E5FF] transition-colors text-sm flex items-center gap-2 group">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]/0 group-hover:bg-[#00E5FF] transition-all"></span> Custom PC Build
+                    </Link>
+                    <Link to="/complete-builds" className="text-[#A0AEC0] hover:text-[#00E5FF] transition-colors text-sm flex items-center gap-2 group">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]/0 group-hover:bg-[#00E5FF] transition-all"></span> Complete Builds
                     </Link>
                     <Link to="/about-us" className="text-[#A0AEC0] hover:text-[#00E5FF] transition-colors text-sm flex items-center gap-2 group">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]/0 group-hover:bg-[#00E5FF] transition-all"></span> About Us
@@ -86,8 +92,11 @@ export default function Footer() {
                 <p className="text-[#A0AEC0] text-xs">
                     &copy; {new Date().getFullYear()} quantumpart. All rights reserved.
                 </p>
-                <div className="flex gap-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" className="h-6 opacity-50 grayscale hover:grayscale-0 transition-all" alt="Mastercard" />
+                <div className="flex gap-4 items-center">
+                    <FaCcVisa size={30} className="text-[#A0AEC0] hover:text-white transition-colors cursor-pointer" />
+                    <FaCcMastercard size={30} className="text-[#A0AEC0] hover:text-white transition-colors cursor-pointer" />
+                    <FaCcAmex size={30} className="text-[#A0AEC0] hover:text-white transition-colors cursor-pointer" />
+                    <FaCcPaypal size={30} className="text-[#A0AEC0] hover:text-white transition-colors cursor-pointer" />
                 </div>
             </div>
         </footer>

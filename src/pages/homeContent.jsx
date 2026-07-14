@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Zap, Truck, CreditCard, ChevronRight, ChevronLeft, Monitor, Cpu, HardDrive, Headphones, Mail, Check } from "lucide-react";
+import { Shield, Zap, Truck, CreditCard, ChevronRight, ChevronLeft, Monitor, Cpu, HardDrive, Headphones, Mail, Check, Wrench, Laptop } from "lucide-react";
 import api from "../utils/api";
-import ProductCard from "../components/productCard";
+import getFormattedPrice from "../utils/price-formatter";
 import Footer from "../components/footer";
 import CustomerReviews from "../components/CustomerReviews";
 import CyberpunkHero from "../components/CyberpunkHero";
 
 export default function HomeContent() {
-    const [featuredProducts, setFeaturedProducts] = useState([]);
+    const [featuredBuilds, setFeaturedBuilds] = useState([]);
     
     // Carousel State
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -26,23 +26,23 @@ export default function HomeContent() {
     const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
 
     useEffect(() => {
-        // Fetch a few products for the featured section
-        api.get("/products")
+        // Fetch a few complete builds for the featured section
+        api.get("/complete-builds")
             .then((res) => {
-                setFeaturedProducts(res.data.slice(0, 4));
+                setFeaturedBuilds(res.data.builds.slice(0, 4));
             })
-            .catch((err) => console.error("Error fetching featured products:", err));
+            .catch((err) => console.error("Error fetching featured builds:", err));
     }, []);
 
     const categories = [
-        { name: "Gaming PCs", icon: <Monitor size={32} />, path: "/products?category=gaming-pcs" },
-        { name: "Processors", icon: <Cpu size={32} />, path: "/products?category=processors" },
-        { name: "Graphics Cards", icon: <HardDrive size={32} />, path: "/products?category=graphics-cards" },
-        { name: "Accessories", icon: <Headphones size={32} />, path: "/products?category=accessories" },
+        { name: "Custom PC Builder", icon: <Wrench size={32} />, path: "/pc-builder" },
+        { name: "Complete Builds", icon: <Monitor size={32} />, path: "/complete-builds" },
+        { name: "Gaming Laptops", icon: <Laptop size={32} />, path: "/products?category=laptops" },
+        { name: "PC Components", icon: <Cpu size={32} />, path: "/products?category=graphic card" },
     ];
 
     const features = [
-        { title: "Fast Delivery", desc: "Island-wide express shipping", icon: <Truck size={32} className="text-[#00E5FF]" /> },
+        { title: "Fast Delivery", desc: "Island wide express shipping", icon: <Truck size={32} className="text-[#00E5FF]" /> },
         { title: "Genuine Products", desc: "100% authentic gear", icon: <Shield size={32} className="text-[#FF2DA6]" /> },
         { title: "Warranty", desc: "Comprehensive coverage", icon: <Zap size={32} className="text-[#A855F7]" /> },
         { title: "Secure Payments", desc: "Safe & encrypted", icon: <CreditCard size={32} className="text-[#00E5FF]" /> },
@@ -82,7 +82,7 @@ export default function HomeContent() {
             <section className="w-full max-w-[1400px] px-6 md:px-12 py-16 flex flex-col gap-10">
                 <div className="flex justify-between items-end border-b border-white/10 pb-4">
                     <div>
-                        <h2 className="text-3xl font-orbitron font-bold text-white mb-2">SHOP BY CATEGORY</h2>
+                        <h2 className="text-3xl font-orbitron font-bold text-white mb-2">EXPLORE OUR STORE</h2>
                         <div className="h-1 w-20 bg-[#FF2DA6] rounded-full"></div>
                     </div>
                 </div>
@@ -159,22 +159,51 @@ export default function HomeContent() {
                 </div>
             </section>
 
-            {/* Featured Products */}
+            {/* Featured Builds */}
             <section className="w-full max-w-[1400px] px-6 md:px-12 py-16 flex flex-col gap-10">
                 <div className="flex justify-between items-end border-b border-white/10 pb-4">
                     <div>
-                        <h2 className="text-3xl font-orbitron font-bold text-white mb-2">TOP RATED PRODUCTS</h2>
+                        <h2 className="text-3xl font-orbitron font-bold text-white mb-2">ELITE GAMING BUILDS</h2>
                         <div className="h-1 w-20 bg-[#00E5FF] rounded-full"></div>
                     </div>
-                    <Link to="/products" className="text-[#00E5FF] hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
+                    <Link to="/complete-builds" className="text-[#00E5FF] hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
                         View All <ChevronRight size={16} />
                     </Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {featuredProducts.length > 0 ? (
-                        featuredProducts.map(product => (
-                            <ProductCard key={product.productId} product={product} />
+                    {featuredBuilds.length > 0 ? (
+                        featuredBuilds.map(build => (
+                            <Link key={build.buildId} to={`/complete-builds/${build.buildId}`} className="group relative bg-[#111827] border border-white/5 rounded-2xl overflow-hidden flex flex-col hover:border-[#FF2DA6]/50 hover:shadow-[0_0_20px_rgba(255,45,166,0.2)] transition-all">
+                                <div className="h-56 w-full bg-black/40 p-6 flex justify-center items-center relative overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#111827]/80 z-10" />
+                                    <img src={build.images[0]} alt={build.name} className="w-full h-full object-contain relative z-0 group-hover:scale-110 transition-transform duration-500" />
+                                    {/* Stock badge */}
+                                    <div className="absolute top-3 right-3 z-20">
+                                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold border backdrop-blur-md ${
+                                            build.isAvailable && build.stock > 0
+                                                ? "bg-[#00E5FF]/20 text-[#00E5FF] border-[#00E5FF]/30"
+                                                : "bg-red-500/20 text-red-400 border-red-500/30"
+                                        }`}>
+                                            {build.isAvailable && build.stock > 0 ? "In Stock" : "Out of Stock"}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="p-5 flex flex-col gap-2 flex-grow relative z-20 bg-gradient-to-b from-transparent to-[#111827]">
+                                    <h3 className="text-lg font-bold text-white group-hover:text-[#FF2DA6] transition-colors line-clamp-1">{build.name}</h3>
+                                    <div className="flex gap-2 text-xs text-gray-400 mt-1">
+                                        <Cpu size={14} className="text-[#FF2DA6] shrink-0" />
+                                        <span className="truncate">{build.cpu.split(" ").slice(0, 3).join(" ")}</span>
+                                    </div>
+                                    <div className="flex gap-2 text-xs text-gray-400">
+                                        <Monitor size={14} className="text-[#00E5FF] shrink-0" />
+                                        <span className="truncate">{build.gpu.split(" ").slice(0, 3).join(" ")}</span>
+                                    </div>
+                                    <div className="mt-auto pt-4 flex justify-between items-center border-t border-white/10">
+                                        <span className="text-xl font-bold text-[#00E5FF]">{getFormattedPrice(build.price)}</span>
+                                    </div>
+                                </div>
+                            </Link>
                         ))
                     ) : (
                         Array(4).fill(0).map((_, i) => (

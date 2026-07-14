@@ -91,7 +91,7 @@ export default function AboutUs() {
                     >
                         <div className="absolute inset-0 bg-gradient-to-tr from-[#FF2DA6]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                         <img 
-                            src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?q=80&w=2070&auto=format&fit=crop" 
+                            src="https://vygslztoywtzdpltsnnk.supabase.co/storage/v1/object/public/otherImages/images/photoAboutUs.avif" 
                             alt="Premium Gaming Setup" 
                             className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />

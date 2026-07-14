@@ -49,7 +49,7 @@ export default function App() {
   return (
     <section className="relative w-full min-h-[90vh] overflow-hidden flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 py-20 text-white font-sans">
       
-      <div className="absolute inset-0 bg-[url('/homePage.png')] bg-cover bg-center z-0" />
+      <div className="absolute inset-0 bg-[url('https://vygslztoywtzdpltsnnk.supabase.co/storage/v1/object/public/otherImages/images/homePage.png')] bg-cover bg-center z-0" />
       
       <div className="absolute inset-0 bg-gradient-to-r from-[#050816] via-[#050816]/80 to-transparent z-0" />
 

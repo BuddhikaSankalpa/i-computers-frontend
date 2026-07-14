@@ -52,7 +52,7 @@ export default function ForgetPasswordPage(){
 
     }
     return(
-        <div className="w-full h-screen bg-[url(/bgpic.jpg)] bg-cover bg-no-repeat flex justify-center items-center font-sans bg-black/20 bg-blend-overlay">
+        <div className="w-full h-screen bg-[url('https://vygslztoywtzdpltsnnk.supabase.co/storage/v1/object/public/otherImages/images/bgpic.jpg')] bg-cover bg-no-repeat flex justify-center items-center font-sans bg-black/20 bg-blend-overlay">
             {loading && <LoadingScreen/>}
             {otpSent?
 

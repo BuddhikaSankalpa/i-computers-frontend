@@ -7,6 +7,7 @@ import getFormattedPrice from "../utils/price-formatter";
 import { Cpu, Gpu, LayoutGrid, MemoryStick } from "lucide-react"; // Wait, lucide-react doesn't have Gpu and MemoryStick. Let me use alternative icons or text.
 // Let's use Cpu, MonitorPlay, Server, CircuitBoard
 import { MonitorPlay, CircuitBoard, Server } from "lucide-react";
+import Footer from "../components/footer";
 
 export default function CompleteBuildsPage() {
     const [builds, setBuilds] = useState([]);
@@ -41,7 +42,7 @@ export default function CompleteBuildsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050816] text-white pt-[100px] pb-24 px-4 sm:px-8 relative overflow-hidden">
+        <div className="min-h-screen bg-[#050816] text-white pt-[100px] pb-2 px-4 sm:px-8 relative overflow-hidden">
             {/* Background Effects */}
             <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-[#FF2DA6]/10 rounded-full blur-[120px] pointer-events-none"></div>
             <div className="absolute top-[60%] right-[-10%] w-[600px] h-[600px] bg-[#00E5FF]/10 rounded-full blur-[120px] pointer-events-none"></div>
@@ -153,6 +154,7 @@ export default function CompleteBuildsPage() {
                     </motion.div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 }

@@ -15,7 +15,7 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <GoogleOAuthProvider clientId="993841355250-otst2f3p5v2fkv9bbd8p5595o5uig4aa.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <div className='w-full h-screen '>
         <Toaster position='top-right' />
         <Routes>

@@ -25,6 +25,28 @@ export default function HomeContent() {
     const nextSlide = () => setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
     const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
 
+    // Auto-advance carousel every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [carouselImages.length]);
+
+    // Newsletter State
+    const [email, setEmail] = useState("");
+    const [isSubscribed, setIsSubscribed] = useState(false);
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        if (!email) return;
+        setIsSubscribed(true);
+        setTimeout(() => {
+            setIsSubscribed(false);
+            setEmail("");
+        }, 3000);
+    };
+
     useEffect(() => {
         // Fetch a few complete builds for the featured section
         api.get("/complete-builds")
@@ -280,13 +302,27 @@ export default function HomeContent() {
                                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                                 <input 
                                     type="email" 
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email address" 
                                     className="w-full bg-[#050816] border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white outline-none focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF] transition-all placeholder:text-gray-600"
                                 />
                             </div>
                             
-                            <button className="w-full bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-black font-bold text-lg px-8 py-4 rounded-xl hover:opacity-90 hover:scale-[1.02] transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)] mt-2">
-                                Subscribe Now
+                            <button 
+                                onClick={handleSubscribe}
+                                disabled={isSubscribed || !email}
+                                className={`w-full font-bold text-lg px-8 py-4 rounded-xl transition-all duration-500 mt-2 flex justify-center items-center gap-2 ${
+                                    isSubscribed 
+                                        ? "bg-[#00E676] text-black shadow-[0_0_20px_rgba(0,230,118,0.4)] scale-[1.02]" 
+                                        : "bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-black shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:opacity-90 hover:scale-[1.02]"
+                                } disabled:opacity-70 disabled:cursor-not-allowed`}
+                            >
+                                {isSubscribed ? (
+                                    <>Subscribed! <Check size={20} /></>
+                                ) : (
+                                    "Subscribe Now"
+                                )}
                             </button>
                             
                             <p className="text-xs text-gray-500 text-center mt-2">

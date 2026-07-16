@@ -98,7 +98,7 @@ export default function ProductOverview(){
                     </div>
 
                     {/* Value Props */}
-                    <div className="grid grid-cols-3 gap-4 mb-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
                         <div className="flex flex-col items-center justify-center p-4 bg-black/40 rounded-xl border border-white/5 text-center">
                             <Shield size={24} className="text-[#00E5FF] mb-2" />
                             <span className="text-xs text-[#A0AEC0] font-medium">Official Warranty</span>

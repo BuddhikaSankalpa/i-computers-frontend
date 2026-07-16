@@ -112,7 +112,7 @@ export default function AboutUs() {
                                 At <strong className="text-white font-semibold">quantum parts</strong>, we believe technology should be powerful, reliable, and accessible to everyone.
                             </p>
                             <p>
-                                Our mission is to provide premium computer hardware, gaming accessories, custom-built PCs, laptops, networking equipment, and the latest technology products from trusted global brands.
+                                Our mission is to provide premium computer hardware, gaming accessories, custom built PCs, laptops, networking equipment, and the latest technology products from trusted global brands.
                             </p>
                             <p>
                                 Whether you're a passionate gamer, creative professional, university student, or business owner, we're dedicated to helping you build the perfect computing experience.
@@ -157,7 +157,7 @@ export default function AboutUs() {
                         </div>
                         <h3 className="text-2xl font-orbitron font-bold mb-4 text-white">Our Vision</h3>
                         <p className="text-[#A0AEC0] font-poppins leading-relaxed">
-                            To inspire every gamer, creator, student, and professional by making cutting-edge technology more accessible and helping them achieve their goals through reliable computing solutions.
+                            To inspire every gamer, creator, student, and professional by making cutting edge technology more accessible and helping them achieve their goals through reliable computing solutions.
                         </p>
                     </motion.div>
                 </div>
@@ -182,7 +182,7 @@ export default function AboutUs() {
                         { icon: DollarSign, title: "Competitive Pricing", desc: "Enjoy affordable pricing without compromising on quality.", color: "#FF2DA6" },
                         { icon: Truck, title: "Fast Islandwide Delivery", desc: "Reliable and secure delivery to customers across Sri Lanka.", color: "#00E5FF" },
                         { icon: Headphones, title: "Technical Expertise", desc: "Receive expert guidance from experienced professionals when selecting your components.", color: "#A855F7" },
-                        { icon: ThumbsUp, title: "Customer Satisfaction", desc: "Building long-term customer relationships through outstanding service and reliable support.", color: "#FF2DA6" }
+                        { icon: ThumbsUp, title: "Customer Satisfaction", desc: "Building long term customer relationships through outstanding service and reliable support.", color: "#FF2DA6" }
                     ].map((feature, idx) => (
                         <motion.div
                             key={idx}

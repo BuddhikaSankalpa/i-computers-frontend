@@ -100,8 +100,8 @@ export default function ContactUs() {
                     {[
                         { icon: MapPin, title: "Store Address", content: "123 Main Street<br/>Colombo<br/>Sri Lanka", color: "#00E5FF" },
                         { icon: Phone, title: "Phone", content: "+94 71 234 5678", color: "#A855F7" },
-                        { icon: Mail, title: "Email", content: "<a href='mailto:support@icomputers.lk' class='hover:text-[#FF2DA6] transition-colors'>support@icomputers.lk</a>", color: "#FF2DA6" },
-                        { icon: Clock, title: "Business Hours", content: "Mon – Fri: 9:00 AM – 6:00 PM<br/>Sat: 9:00 AM – 4:00 PM<br/>Sun: Closed", color: "#00E5FF" }
+                        { icon: Mail, title: "Email", content: "<a href='mailto:support@quantumparts.lk' class='hover:text-[#FF2DA6] transition-colors'>support@quantumparts.lk</a>", color: "#FF2DA6" },
+                        { icon: Clock, title: "Business Hours", content: "Mon : Fri: 9:00 AM – 6:00 PM<br/>Sat : 9:00 AM – 4:00 PM<br/>Sun : Closed", color: "#00E5FF" }
                     ].map((info, idx) => (
                         <motion.div 
                             key={idx}

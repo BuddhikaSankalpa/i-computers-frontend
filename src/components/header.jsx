@@ -1,14 +1,15 @@
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import UserData from "./userData";
-import { ShoppingCart, Search, Menu } from "lucide-react";
-import { motion } from "framer-motion";
+import { ShoppingCart, Search, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
     const location = useLocation();
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const [headerSearch, setHeaderSearch] = useState("");
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         if (location.pathname === "/products") {
@@ -104,10 +105,54 @@ export default function Header() {
 
                 <UserData />
 
-                <button className="md:hidden w-10 h-10 flex justify-center items-center text-[#A0AEC0] hover:text-[#00E5FF] transition-colors">
-                    <Menu size={24} />
+                <button 
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="md:hidden w-10 h-10 flex justify-center items-center text-[#A0AEC0] hover:text-[#00E5FF] transition-colors"
+                >
+                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="absolute top-20 left-0 w-full bg-[#111827]/95 backdrop-blur-xl border-b border-white/10 md:hidden flex flex-col items-center py-6 gap-6 shadow-[0_10px_30px_rgba(0,0,0,0.8)] overflow-hidden"
+                    >
+                        <form onSubmit={(e) => { handleSearchSubmit(e); setIsMobileMenuOpen(false); }} className="flex items-center bg-white/5 border border-white/10 rounded-full px-4 h-12 w-[80%] max-w-sm focus-within:border-[#00E5FF]/50 focus-within:bg-[#00E5FF]/5 transition-all duration-300">
+                            <input
+                                type="text"
+                                placeholder="Search products..."
+                                value={headerSearch}
+                                onChange={handleSearchChange}
+                                className="bg-transparent text-white text-sm outline-none w-full transition-all duration-300 placeholder:text-white/30"
+                            />
+                            <button type="submit" className="text-[#A0AEC0] hover:text-[#00E5FF] transition-colors ml-2">
+                                <Search size={18} />
+                            </button>
+                        </form>
+                        
+                        <nav className="flex flex-col items-center gap-6 w-full pb-4">
+                            {navLinks.map((link) => {
+                                const isActive = location.pathname === link.path;
+                                return (
+                                    <Link 
+                                        key={link.path} 
+                                        to={link.path} 
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className={`text-lg font-semibold tracking-wider uppercase transition-colors duration-300 ${isActive ? 'text-[#00E5FF] drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]' : 'text-[#A0AEC0] hover:text-white'}`}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                );
+                            })}
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.header>
     )
 }

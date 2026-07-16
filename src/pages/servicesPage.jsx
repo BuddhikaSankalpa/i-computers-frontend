@@ -65,7 +65,7 @@ const services = [
 
 const process = [
     { step: "01", title: "Reach Out", desc: "Contact us via call, WhatsApp, or visit our store with your requirement." },
-    { step: "02", title: "Diagnosis / Consultation", desc: "We assess your needs or inspect your device and give you a clear quote." },
+    { step: "02", title: "Consultation", desc: "We assess your needs or inspect your device and give you a clear quote." },
     { step: "03", title: "We Get to Work", desc: "Our certified technicians handle the build, repair, or setup with care." },
     { step: "04", title: "Quality Check & Delivery", desc: "Every job is tested before handover, with warranty and support included." }
 ];

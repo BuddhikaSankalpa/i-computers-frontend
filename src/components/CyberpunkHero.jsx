@@ -56,16 +56,16 @@ export default function App() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
-      <div className="w-full lg:w-1/2 z-10 pl-20 flex flex-col gap-8 max-w-2xl lg:pr-10 mt-10 lg:mt-0 order-2 lg:order-1">
+      <div className="w-full lg:w-1/2 z-10 pl-0 md:pl-20 flex flex-col gap-8 max-w-2xl lg:pr-10 mt-10 lg:mt-0 order-2 lg:order-1">
 
         <motion.h1 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[52px] md:text-[68px] lg:text-[70px] font-black text-white font-orbitron leading-[1.2] tracking-wide"
+            className="text-4xl sm:text-5xl md:text-[68px] lg:text-[70px] font-black text-white font-orbitron leading-[1.2] tracking-wide break-words"
         >
             BUILD YOUR <br />
-            <span className="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-[#A855F7] drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+            <span className="whitespace-normal md:whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-[#A855F7] drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
                 ULTIMATE GAMING
             </span>  <br className="hidden md:block" /> 
             

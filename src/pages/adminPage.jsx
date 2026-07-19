@@ -89,6 +89,15 @@ export default function AdminPage() {
                     </Link>
 
                     <Link
+                        to="/admin/complete-builds"
+                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
+                        ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'bg-[#FF2DA6]/20 text-[#FF2DA6] border border-[#FF2DA6]/30 shadow-[0_0_15px_rgba(255,45,166,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
+                    >
+                        <Server className={`text-xl ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'text-[#FF2DA6]' : 'group-hover:text-white transition-colors'}`} />
+                        <span className="tracking-wide">Complete Builds</span>
+                    </Link>
+
+                    <Link
                         to="/admin/products"
                         className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
                         ${isActive("/admin/products") || isActive("/admin/add-product") || isActive("/admin/edit-product") ? 'bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/30 shadow-[0_0_15px_rgba(168,85,247,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
@@ -124,14 +133,7 @@ export default function AdminPage() {
                         <span className="tracking-wide">Custom Builds</span>
                     </Link>
 
-                    <Link
-                        to="/admin/complete-builds"
-                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
-                        ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'bg-[#FF2DA6]/20 text-[#FF2DA6] border border-[#FF2DA6]/30 shadow-[0_0_15px_rgba(255,45,166,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
-                    >
-                        <Server className={`text-xl ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'text-[#FF2DA6]' : 'group-hover:text-white transition-colors'}`} />
-                        <span className="tracking-wide">Complete Builds</span>
-                    </Link>
+                    
                 </div>
 
                 {/* Bottom Actions */}

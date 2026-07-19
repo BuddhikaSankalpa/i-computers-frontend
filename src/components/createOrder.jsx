@@ -12,10 +12,13 @@ export default function CreateOrder(props) {
     const [addressLine2, setAddressLine2] = useState("")
     const [city, setCity] = useState("")
     const [phone, setPhone] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const navigate = useNavigate()
     const cart = props.cart;
 
     async function placeOrder() {
+        if (isSubmitting) return;
+        setIsSubmitting(true);
         try {
             const body = {
                 firstName: firstName,
@@ -59,6 +62,8 @@ export default function CreateOrder(props) {
             toast.error(error?.response?.data?.message || "An error occurred", {
                 style: { background: '#111827', color: '#fff', border: '1px solid rgba(239,68,68,0.3)' }
             })
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -131,10 +136,11 @@ export default function CreateOrder(props) {
                             </button>
                             <button
                                 onClick={placeOrder}
-                                className="flex-1 py-4 px-6 bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white rounded-xl font-bold shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:opacity-90 transition-all flex justify-center items-center gap-2"
+                                disabled={isSubmitting}
+                                className={`flex-1 py-4 px-6 bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white rounded-xl font-bold shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all flex justify-center items-center gap-2 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'}`}
                             >
                                 <CheckCircle2 size={20} />
-                                Confirm Order
+                                {isSubmitting ? "Processing..." : "Confirm Order"}
                             </button>
                         </div>
                     </div>

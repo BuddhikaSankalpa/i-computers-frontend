@@ -62,7 +62,7 @@ export default function Header() {
         >
             <div className="h-full flex items-center">
                 <Link to="/" className="h-full flex items-center relative group">
-                    <img src="https://vygslztoywtzdpltsnnk.supabase.co/storage/v1/object/public/otherImages/images/logo.png" alt="i-Computers Logo" className="h-20 md:h-44 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-transform duration-300 group-hover:scale-105" />
+                    <img src="https://vygslztoywtzdpltsnnk.supabase.co/storage/v1/object/public/otherImages/images/logo.png" alt="i-Computers Logo" className="h-32 md:h-44 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-transform duration-300 group-hover:scale-105" />
                 </Link>
             </div>
 

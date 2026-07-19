@@ -18,6 +18,14 @@ export default function CreateOrder(props) {
 
     async function placeOrder() {
         if (isSubmitting) return;
+
+        if (!firstName.trim() || !lastName.trim() || !addressLine1.trim() || !city.trim() || !phone.trim()) {
+            toast.error("Please fill in all required shipping details", {
+                style: { background: '#111827', color: '#fff', border: '1px solid rgba(239,68,68,0.3)' }
+            });
+            return;
+        }
+
         setIsSubmitting(true);
         try {
             const body = {
@@ -137,10 +145,10 @@ export default function CreateOrder(props) {
                             <button
                                 onClick={placeOrder}
                                 disabled={isSubmitting}
-                                className={`flex-1 py-4 px-6 bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white rounded-xl font-bold shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all flex justify-center items-center gap-2 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'}`}
+                                className={`flex-1 py-4 px-6 bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white rounded-xl font-bold shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all flex justify-center items-center gap-2 whitespace-nowrap ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'}`}
                             >
-                                <CheckCircle2 size={20} />
-                                {isSubmitting ? "Processing..." : "Confirm Order"}
+                                <CheckCircle2 size={20} className="shrink-0" />
+                                <span>{isSubmitting ? "Processing..." : "Confirm Order"}</span>
                             </button>
                         </div>
                     </div>
@@ -148,7 +156,8 @@ export default function CreateOrder(props) {
 
             <button
                 onClick={() => setIsModalOpen(true)}
-                className="w-full py-4 px-6 bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white rounded-xl font-bold text-lg shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:opacity-90 transition-all flex justify-center items-center gap-2"
+                disabled={isModalOpen}
+                className={`w-full py-4 px-6 bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white rounded-xl font-bold text-lg shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all flex justify-center items-center gap-2 ${isModalOpen ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'}`}
             >
                 Continue to Payment
             </button>

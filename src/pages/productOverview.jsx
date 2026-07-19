@@ -12,6 +12,7 @@ export default function ProductOverview(){
     const parameters = useParams()
     const navigate = useNavigate()
     const [product, setProduct] = useState(null)
+    const [isNavigating, setIsNavigating] = useState(false)
 
     useEffect(()=>{
         if(parameters.productId==null){
@@ -130,25 +131,30 @@ export default function ProductOverview(){
                             Add to Cart
                         </button>
                         
-                        <Link 
-                            className={`flex-1 flex justify-center items-center gap-3 py-4 px-6 rounded-xl font-bold transition-all duration-300 text-center ${product.isAvailable ? 'bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white hover:opacity-90 shadow-[0_0_20px_rgba(168,85,247,0.4)] cursor-pointer' : 'bg-gray-800 text-gray-500 cursor-not-allowed pointer-events-none'}`}
-                            to="/checkout"
-                            state={[
-                                {
-                                    product: {
-                                        productId: product.productId,
-                                        name: product.name,
-                                        image: product.images[0],
-                                        price: product.price,
-                                        labelledPrice: product.labelledPrice
-                                    },
-                                    qty: 1
-                                }
-                            ]}
+                        <button 
+                            disabled={!product.isAvailable || isNavigating}
+                            onClick={() => {
+                                setIsNavigating(true);
+                                navigate("/checkout", {
+                                    state: [
+                                        {
+                                            product: {
+                                                productId: product.productId,
+                                                name: product.name,
+                                                image: product.images[0],
+                                                price: product.price,
+                                                labelledPrice: product.labelledPrice
+                                            },
+                                            qty: 1
+                                        }
+                                    ]
+                                });
+                            }}
+                            className={`flex-1 flex justify-center items-center gap-3 py-4 px-6 rounded-xl font-bold transition-all duration-300 text-center ${product.isAvailable && !isNavigating ? 'bg-gradient-to-r from-[#00E5FF] to-[#A855F7] text-white hover:opacity-90 shadow-[0_0_20px_rgba(168,85,247,0.4)] cursor-pointer' : 'bg-gray-800 text-gray-500 cursor-not-allowed pointer-events-none'}`}
                         >
                             <CreditCard size={20} />
-                            Buy It Now
-                        </Link>
+                            {isNavigating ? "Processing..." : "Buy It Now"}
+                        </button>
                     </div>
                 </div>
             </div>

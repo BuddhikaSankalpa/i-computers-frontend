@@ -89,6 +89,15 @@ export default function AdminPage() {
                     </Link>
 
                     <Link
+                        to="/admin/custom-builds"
+                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
+                        ${isActive("/admin/custom-builds") ? 'bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/30 shadow-[0_0_15px_rgba(0,229,255,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
+                    >
+                        <Cpu className={`text-xl ${isActive("/admin/custom-builds") ? 'text-[#00E5FF]' : 'group-hover:text-white transition-colors'}`} />
+                        <span className="tracking-wide">Custom Builds</span>
+                    </Link>
+
+                    <Link
                         to="/admin/complete-builds"
                         className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
                         ${isActive("/admin/complete-builds") || isActive("/admin/add-complete-build") || isActive("/admin/edit-complete-build") ? 'bg-[#FF2DA6]/20 text-[#FF2DA6] border border-[#FF2DA6]/30 shadow-[0_0_15px_rgba(255,45,166,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
@@ -124,14 +133,7 @@ export default function AdminPage() {
                         <span className="tracking-wide">Reviews</span>
                     </Link>
 
-                    <Link
-                        to="/admin/custom-builds"
-                        className={`w-full h-[50px] rounded-xl font-medium flex items-center gap-4 px-4 transition-all duration-300 group
-                        ${isActive("/admin/custom-builds") ? 'bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/30 shadow-[0_0_15px_rgba(0,229,255,0.1)]' : 'text-[#A0AEC0] hover:bg-white/5 hover:text-white'}`}
-                    >
-                        <Cpu className={`text-xl ${isActive("/admin/custom-builds") ? 'text-[#00E5FF]' : 'group-hover:text-white transition-colors'}`} />
-                        <span className="tracking-wide">Custom Builds</span>
-                    </Link>
+                    
 
                     
                 </div>
